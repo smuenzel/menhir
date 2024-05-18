@@ -163,6 +163,7 @@ NEW_VERSIONS := \
   4.14.1 \
   5.0.0 \
   5.1.0 \
+  5.2.0 \
 
 .PHONY: old_versions new_versions versions
 old_versions:
