@@ -1,6 +1,6 @@
 # Changes
 
-## 2024/02/XX
+## 2024/07/15
 
 * Avoid the `future-coercion-class-field` warning.
   (Contributed by Pierre Roux.)

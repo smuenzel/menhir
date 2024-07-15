@@ -1,6 +1,6 @@
 # Changes
 
-## 2024/MM/DD
+## 2024/07/15
 
 * Fix a bug that could in principle cause `menhir --list-errors` to produce
   incorrect output in some cases. This bug was never observed in real life.
