@@ -525,6 +525,7 @@ module Run () = struct
       List.iter (fun s -> fprintf f "%s\n\n" s.Stretch.stretch_content)
         Front.grammar.BasicSyntax.preludes;
 
+    fprintf f "From Coq.extraction Require Extraction.\n";
     fprintf f "From Coq.Lists Require List.\n";
     fprintf f "From Coq.PArith Require Import BinPos.\n";
     fprintf f "From Coq.NArith Require Import BinNat.\n";
