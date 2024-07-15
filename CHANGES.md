@@ -6,6 +6,10 @@
   incorrect output in some cases. This bug was never observed in real life.
   (Contributed by Frédéric Bour.)
 
+* `menhir --coq` now generates `From Coq.extraction Require Extraction.`,
+  which is required for compatibility with future versions of Coq.
+  (Requested by Xavier Leroy; implemented by Jacques-Henri Jourdan.)
+
 ## 2023/12/31
 
 * The new command line switch `--unparsing` (which must be used in conjunction
