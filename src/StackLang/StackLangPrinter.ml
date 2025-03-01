@@ -120,7 +120,9 @@ let primitive prim =
   | PrimLexerCall _ ->
       assert false
   | PrimOCamlFieldAccess (v, f) ->
-      value v ^^ dot ^^ string f
+    value v ^^ dot ^^ string f
+  | PrimOCamlPureFunctionCall (fn, args) ->
+      string fn ^^ parens(values args)
   | PrimOCamlAction (bs, _prod, _action) ->
       if Bindings.is_empty bs then
         string "<semantic action>"

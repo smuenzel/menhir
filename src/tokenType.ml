@@ -109,7 +109,7 @@ let tokentypedef grammar =
 
   in
   [
-    IIComment "The type of tokens.";
+    IIComment "The type of tokens...";
     IITypeDecls [{
       typename = tctoken;
       typeparams = [];
