@@ -289,7 +289,7 @@ let auto2scheme t =
    implies less frequent minor collections. *)
 
 let getstartp =
-  ERecordAccess (ERecordAccess (EVar env, flexbuf), "Lexing.lex_start_p")
+  EApp (EVar "Lexing.Revised.get_startp", [ ERecordAccess (EVar env, flexbuf) ])
 
 let getendp =
   ERecordAccess (ERecordAccess (EVar env, flexbuf), "Lexing.lex_curr_p")

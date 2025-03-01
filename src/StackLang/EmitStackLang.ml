@@ -385,8 +385,8 @@ let rec run mode s =
   (* If necessary, read the positions of the current token from [lexbuf]. *)
 
   if must_read_positions then begin
-    prim startp (PrimOCamlFieldAccess (VReg lexbuf, "Lexing.lex_start_p"));
-    prim endp (PrimOCamlFieldAccess (VReg lexbuf, "Lexing.lex_curr_p"))
+    prim startp (PrimOCamlFieldAccess (VReg lexbuf, "Lexing.lexeme_start_p"));
+    prim endp (PrimOCamlFieldAccess (VReg lexbuf, "Lexing.lexeme_end_p"))
   end;
 
   (* Note that [state] does not contain the state [s]; instead, it contains a
