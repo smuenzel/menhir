@@ -98,13 +98,13 @@ let stoken =
      token *)
 
 let pos_cnum e =
-  EApp (EVar "Lexing.pos_cnum", [e])
+  ERecordAccess (e, "Lexing.pos_cnum")
 
 let lex_start_p e =
-  EApp (EVar "Lexing.lex_start_p", [e])
+  EApp (EVar "Lexing.lexeme_start_p", [e])
 
 let lex_curr_p e =
-  EApp (EVar "Lexing.lex_curr_p", [e])
+  EApp (EVar "Lexing.lexeme_end_p", [e])
 
 (* The auxiliary function [discard] invokes the lexer. If [Settings.trace] is
    set, it also prints a trace message. When [Settings.trace] is unset, we
@@ -617,7 +617,9 @@ let compile_prim prim =
             assert false
       end
   | PrimOCamlFieldAccess (v, field) ->
-      EApp (EVar field, [compile_value v])
+      ERecordAccess(compile_value v, field)
+  | PrimOCamlFunctionCall (fn, args) ->
+      EApp (EVar fn, compile_values args)
   | PrimOCamlAction (bs, prod, action) ->
       compile_bindings bs (call_action prod action)
 

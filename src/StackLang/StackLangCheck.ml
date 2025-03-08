@@ -142,6 +142,8 @@ let wf_prim env p =
       List.iter (wf_value env) vs
   | PrimOCamlFieldAccess (v, _) ->
       wf_value env v
+  | PrimOCamlFunctionCall (_fn, args) ->
+      List.iter (wf_value env) args
   | PrimOCamlAction (bs, _prod, action) ->
       let env = wf_bindings env bs in
       let vars = import (Action.vars action) in

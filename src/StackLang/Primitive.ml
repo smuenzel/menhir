@@ -19,6 +19,8 @@ let registers prim =
       Value.registers vs
   | PrimOCamlFieldAccess (v, _fields) ->
       Value.registers [v]
+  | PrimOCamlFunctionCall (_fn, args) ->
+      Value.registers args
   | PrimOCamlAction (bindings, _prod, action) ->
       let vars = import (Action.vars action) in
       Bindings.codomain bindings + (vars - Bindings.domain bindings)
@@ -36,6 +38,8 @@ let apply bs prim =
       prim_ocaml_action (Bindings.seq bs bs') prod action
   | PrimOCamlFieldAccess (v, field) ->
       PrimOCamlFieldAccess (Bindings.apply bs v, field)
+  | PrimOCamlFunctionCall (fn, args) ->
+      PrimOCamlFunctionCall (fn, List.map (Bindings.apply bs) args)
 
 let pure prim =
   match prim with
@@ -43,4 +47,6 @@ let pure prim =
   | PrimOCamlAction _ ->
       false
   | PrimOCamlFieldAccess _ ->
+      true
+  | PrimOCamlFunctionCall _ ->
       true

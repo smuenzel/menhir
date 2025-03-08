@@ -289,10 +289,10 @@ let auto2scheme t =
    implies less frequent minor collections. *)
 
 let getstartp =
-  EApp (EVar "Lexing.Revised.get_startp", [ ERecordAccess (EVar env, flexbuf) ])
+  EApp (EVar "Lexing.lexeme_start_p", [ ERecordAccess (EVar env, flexbuf) ])
 
 let getendp =
-  ERecordAccess (ERecordAccess (EVar env, flexbuf), "Lexing.lex_curr_p")
+  EApp (EVar "Lexing.lexeme_end_p", [ ERecordAccess (EVar env, flexbuf) ])
 
 (* ------------------------------------------------------------------------ *)
 
@@ -1578,8 +1578,8 @@ let discardbody =
     ] @
       trace "Lookahead token is now %s (%d-%d)"
             [ EApp (EVar print_token, [ EVar token ]);
-              ERecordAccess (ERecordAccess (EVar lexbuf, "Lexing.lex_start_p"), "Lexing.pos_cnum");
-              ERecordAccess (ERecordAccess (EVar lexbuf, "Lexing.lex_curr_p"), "Lexing.pos_cnum") ],
+              ERecordAccess (EApp (EVar "Lexing.lexeme_start_p", [ EVar lexbuf ]), "Lexing.pos_cnum");
+              ERecordAccess (EApp (EVar "Lexing.lexeme_end_p", [ EVar lexbuf ]), "Lexing.pos_cnum") ],
       ERecord [
         flexer, EVar lexer;
         flexbuf, EVar lexbuf;

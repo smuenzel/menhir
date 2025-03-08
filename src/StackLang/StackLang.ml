@@ -52,9 +52,13 @@ type bindings =
 type primitive =
   | PrimLexerCall of value list
   | PrimOCamlFieldAccess of value * field
+  | PrimOCamlFunctionCall of function_name * value list
   | PrimOCamlAction of bindings * production * action
 
 and field =
+  string
+
+and function_name =
   string
 
 and action =

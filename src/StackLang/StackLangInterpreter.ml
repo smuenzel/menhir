@@ -186,6 +186,9 @@ let exec_prim state prim =
       (* We assume that this is an access to a position field in [lexbuf]. *)
       (* A position is replaced with a dummy value. *)
       GVDummy
+  | PrimOCamlFunctionCall _ ->
+      (* A function call is replaced with a dummy value. *)
+      GVDummy
   | PrimOCamlAction (_bs, prod, _action) ->
       (* Because the bindings have local scope, they affect just the semantic
          action, which we do not execute; so, they can be ignored. *)
